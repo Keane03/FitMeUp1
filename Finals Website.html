@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fitness Tracker</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Quicksand', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url('https://plus.unsplash.com/premium_photo-1670505062582-fdaa83c23c9e?q=80&w=1771&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'); /* Replace with your background image URL */
+            background-size: cover;
+            background-repeat: no-repeat;
+            color: #333;
+        }
+        header {
+            background-color: rgba(76, 175, 80, 0.8);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        nav {
+            margin: 10px 0;
+        }
+        nav a {
+            margin: 0 15px;
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        section {
+            padding: 20px;
+            margin: 10px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            color: #4CAF50;
+        }
+        footer {
+            text-align: center;
+            padding: 15px;
+            background-color: rgba(76, 175, 80, 0.8);
+            color: white;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+        .meal-ideas, .workout-plans {
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .meal, .workout {
+            flex: 1;
+            min-width: 250px;
+            margin: 10px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background: #f9f9f9;
+            position: relative;
+        }
+        .meal img, .workout img {
+            width: 150px; /* Adjusted size for meal and workout images */
+            height: 150px; /* Square shape */
+            border-radius: 5px;
+        }
+        .hidden {
+            display: none;
+        }
+        .timer {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 20px;
+        }
+        .meal-tracker {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>FitMeUp</h1>
+        <nav>
+            <a href="#workouts" onclick="toggleSection('workout-plans')">Workout Plans</a>
+            <a href="#meals" onclick="toggleSection('meal-ideas')">Meal Ideas</a>
+            <a href="#progress">Progress Tracking</a>
+            <a href="#timer">Workout Timer</a>
+            <a href="#tracker">Meal Tracker</a>
+        </nav>
+    </header>
+
+    <section id="workouts">
+        <h2>Workout Plans</h2>
+        <div id="workout-plans" class="hidden">
+            <div class="workout">
+                <img src="https://images.unsplash.com/photo-1627483298606-cf54c61779a9?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Full Body Workout">
+                <h3>Full Body Workout</h3>
+                <p>3 sets of 10-12 reps for each exercise.</p>
+                <ul>
+                    <li>Push-Ups</li>
+                    <li>Squats</li>
+                    <li>Plank (30 seconds)</li>
+                    <li>Burpees</li>
+                    <li>Lunges</li>
+                </ul>
+            </div>
+            <div class="workout">
+                <img src="https://images.unsplash.com/photo-1607962776853-346ec26811db?q=80&w=1769&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Cardio Routine">
+                <h3>Cardio Routine</h3>
+                <p>30 minutes of your choice of cardio.</p>
+                <ul>
+                    <li>Running</li>
+                    <li>Cycling</li>
+                    <li>Jump Rope</li>
+                    <li>HIIT Exercises</li>
+                </ul>
+            </div>
+            <div class="workout">
+                <img src="https://images.unsplash.com/photo-1554284126-aa88f22d8b74?q=80&w=1894&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxpaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Upper Body Workout">
+                <h3>Upper Body Workout</h3>
+                <p>3 sets of 8-10 reps for each exercise.</p>
+                <ul>
+                    <li>Dumbbell Bench Press</li>
+                    <li>Pull-Ups</li>
+                    <li>Bicep Curls</li>
+                    <li>Tricep Dips</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="meals">
+        <h2>Meal Ideas</h2>
+        <div id="meal-ideas" class="hidden">
+            <div class="meal">
+                <img src="https://images.unsplash.com/photo-1590194360975-c250dde6520d?q=80&w=1864&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Oatmeal">
+                <h3>Breakfast: Oatmeal</h3>
+                <p>Ingredients: Oats, milk, honey, fruits.</p>
+            </div>
+            <div class="meal">
+                <img src="https://images.unsplash.com/photo-1623428187969-5da2dcea5ebf?q=80&w=1964&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Quinoa Salad">
+                <h3>Lunch: Quinoa Salad</h3>
+                <p>Ingredients: Quinoa, vegetables, olive oil, lemon.</p>
+            </div>
+            <div class="meal">
+                <img src="https://images.unsplash.com/photo-1496074620649-6b1b02e5c1c8?q=80&w=1962&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Grilled Chicken">
+                <h3>Dinner: Grilled Chicken</h3>
+                <p>Ingredients: Chicken breast, spices, veggies.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="progress">
+        <h2>Progress Tracking</h2>
+        <p>Keep track of your workouts and meals in a journal or spreadsheet.</p>
+        <ul>
+            <li>Weekly workout log</li>
+            <li>Daily meal diary</li>
+            <li>Monthly weight and measurement updates</li>
+        </ul>
+    </section>
+
+    <section id="timer">
+        <h2>Workout Timer</h2>
+        <div class="timer">
+            <p id="time">00:00</p>
+            <button onclick="startTimer()">Start</button>
+            <button onclick="stopTimer()">Stop</button>
+            <button onclick="resetTimer()">Reset</button>
+        </div>
+    </section>
+
+    <section id="tracker">
+        <h2>Meal Tracker</h2>
+        <div class="meal-tracker">
+            <input type="text" id="mealInput" placeholder="Enter your meal" />
+            <button onclick="addMeal()">Add Meal</button>
+            <ul id="mealList"></ul>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 FitMeUp. All rights reserved.</p>
+    </footer>
+
+    <script>
+        let timerInterval;
+        let seconds = 0;
+
+        function toggleSection(sectionId) {
+            const section = document.getElementById(sectionId);
+            if (section.classList.contains('hidden')) {
+                section.classList.remove('hidden');
+            } else {
+                section.classList.add('hidden');
+            }
+        }
+
+        function startTimer() {
+            if (!timerInterval) {
+                timerInterval = setInterval(() => {
+                    seconds++;
+                    document.getElementById('time').innerText = formatTime(seconds);
+                }, 1000);
+            }
+        }
+
+        function stopTimer() {
+            clearInterval(timerInterval);
+            timerInterval = null;
+        }
+
+        function resetTimer() {
+            clearInterval(timerInterval);
+            timerInterval = null;
+            seconds = 0;
+            document.getElementById('time').innerText = formatTime(seconds);
+        }
+
+        function formatTime(seconds) {
+            const minutes = Math.floor(seconds / 60);
+            const remainingSeconds = seconds % 60;
+            return `${String(minutes).padStart(2, '0')}:${String(remainingSeconds).padStart(2, '0')}`;
+        }
+
+        function addMeal() {
+            const mealInput = document.getElementById('mealInput');
+            const mealList = document.getElementById('mealList');
+
+            if (mealInput.value) {
+                const listItem = document.createElement('li');
+                listItem.innerText = mealInput.value;
+                mealList.appendChild(listItem);
+                mealInput.value = ''; // Clear input after adding
+            } else {
+                alert('Please enter a meal!');
+            }
+        }
+    </script>
+</body>
+</html>
